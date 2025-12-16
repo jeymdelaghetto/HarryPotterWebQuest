@@ -252,6 +252,29 @@
             background-color: #004d00;
         }
 
+        /* New styles for Task and Roles box */
+        .task-box {
+            background-color: rgba(211, 166, 37, 0.1);
+            border-left: 5px solid var(--gryffindor-red);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .role-box {
+            background: rgba(0,0,0,0.05); 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 30px; 
+            border: 2px dashed var(--gold);
+        }
+
+        .resource-hint {
+            font-size: 0.9em;
+            color: #555;
+            font-style: italic;
+            margin-left: 20px;
+        }
+
         @media screen and (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -314,69 +337,105 @@
     </div>
 
     <div id="task" class="section-content">
-        <h2>Your Mission</h2>
-        <p>Working in <span class="highlight">pairs</span>, you will create a <strong>"Magical Creature Fact File"</strong> (poster or digital slide).</p>
-        <p>Your Fact File must be written entirely in <strong>English</strong> and include:</p>
-        <ul>
-            <li><strong>Name</strong> of the creature.</li>
-            <li><strong>Appearance:</strong> What does it look like? (Use adjectives!).</li>
-            <li><strong>Habitat:</strong> Where does it live?</li>
-            <li><strong>Abilities:</strong> What magic can it do?</li>
-            <li><strong>Danger Level:</strong> Is it safe or dangerous for Muggles?</li>
-        </ul>
-        <p>At the end of the 3rd session, you will present your creature to the class to earn your "Creature Permit".</p>
+        <h2>Your Mission Details</h2>
+        <p>You and your partner have one main goal: <strong>Earn your Creature Handling Permit</strong>. To do this, you must complete the following steps clearly:</p>
+        
+        <div class="task-box">
+            <h3>1. What will you create? (Product)</h3>
+            <p>You must make a <strong>"Magical Creature Fact File"</strong>. You can choose one of these formats:</p>
+            <ul>
+                <li>A <strong>Digital Slide</strong> (using PowerPoint, Canva, or Google Slides).</li>
+                <li>A <strong>Physical Poster</strong> (using A3 card, colored pencils, and drawings).</li>
+            </ul>
+        </div>
+
+        <div class="task-box">
+            <h3>2. What must be included? (Content)</h3>
+            <p>Your Fact File must be written in <strong>English</strong> and include exactly these 5 points:</p>
+            <ul>
+                <li><strong>Name:</strong> The creature's name clearly visible.</li>
+                <li><strong>Appearance:</strong> Describe it using at least 3 adjectives (e.g., "shiny black fur").</li>
+                <li><strong>Habitat:</strong> Where does it live? (e.g., "Forests", "Mountains").</li>
+                <li><strong>Abilities:</strong> What magic can it do? (e.g., "It can become invisible").</li>
+                <li><strong>Danger Level:</strong> Is it safe or dangerous for Muggles?</li>
+            </ul>
+        </div>
+
+        <div class="task-box">
+            <h3>3. How will you present it? (Oral)</h3>
+            <p>In Session 3, you will present your work to the class.</p>
+            <ul>
+                <li>Time: <strong>2 minutes</strong> per pair.</li>
+                <li><strong>Both</strong> partners must speak.</li>
+                <li>Do not just read! Look at the audience.</li>
+            </ul>
+        </div>
     </div>
 
     <div id="process" class="section-content">
         <h2>The Process (3 Sessions)</h2>
         
+        <div class="role-box">
+            <h3 style="color: var(--ink);">🤝 Cooperative Roles</h3>
+            <p>Work together! Assign these roles, but help each other:</p>
+            <ul>
+                <li><strong>The Magizoologist (Researcher):</strong> Responsible for finding the correct facts on the websites and checking spelling.</li>
+                <li><strong>The Daily Prophet Reporter (Designer):</strong> Responsible for drawing/designing the poster and organizing the text.</li>
+            </ul>
+            <p><em>*Note: You must switch roles halfway through!*</em></p>
+        </div>
+        
         <h3>Session 1: The Library Search (Research)</h3>
         <ul>
-            <li>Choose a partner.</li>
             <li>Select one creature: <em>Hippogriff, Niffler, Bowtruckle, Phoenix, or Thestral</em>.</li>
-            <li>Use the links in the <strong>Resources</strong> section to find information.</li>
-            <li>Write down 5 key adjectives to describe your creature.</li>
+            <li>Use the links in the <strong>Resources</strong> section.</li>
+            <li><strong>Magizoologist task:</strong> Write down the answers to the 5 content questions in your notebook.</li>
         </ul>
 
         <hr style="border-color: var(--gold); margin: 30px 0;">
 
         <h3>Session 2: The Quill & Ink (Creation)</h3>
         <ul>
-            <li>Draft your text in English. Remember to use full sentences!</li>
+            <li>Draft your text in English. Use full sentences!</li>
             <li><em>Example: "The Niffler is a small, black creature. It likes shiny things."</em></li>
-            <li>Create your poster or slide. Draw your creature or use an image.</li>
-            <li>Check your spelling (spells don't work if you pronounce them wrong!).</li>
+            <li><strong>Reporter task:</strong> Begin creating the poster or slide. Add images or drawings.</li>
+            <li>Check your spelling together.</li>
         </ul>
 
         <hr style="border-color: var(--gold); margin: 30px 0;">
 
         <h3>Session 3: The Great Hall (Presentation)</h3>
         <ul>
-            <li>Present your creature to the class (2 minutes per pair).</li>
-            <li>Speak clearly and confidently.</li>
+            <li>Rehearse your presentation twice.</li>
+            <li>Present your creature to the class (2 minutes).</li>
             <li>Submit your link or poster to the professor.</li>
         </ul>
     </div>
 
     <div id="resources" class="section-content">
         <h2>Authorized Books & Scrolls</h2>
-        <p>Use these links to gather your intelligence. Do not wander into the Restricted Section (unauthorized websites)!</p>
+        <p>Use these specific links to gather your intelligence. Read the hints to know what to look for!</p>
         
         <ul>
             <li>
                 <strong>Wizarding World (Creatures):</strong><br>
-                <a href="https://www.wizardingworld.com/" target="_blank" style="color: var(--gryffindor-red); font-weight: bold;">Official Wizarding World</a> (Search for your creature here)
+                <a href="https://www.wizardingworld.com/" target="_blank" style="color: var(--gryffindor-red); font-weight: bold;">Official Wizarding World</a> 
+                <div class="resource-hint">👉 Search your creature's name here. Best for finding <strong>Abilities</strong> and <strong>Appearance</strong>.</div>
             </li>
+            <br>
             <li>
                 <strong>Harry Potter Wiki:</strong><br>
                 <a href="https://harrypotter.fandom.com/wiki/Magizoology" target="_blank" style="color: var(--gryffindor-red); font-weight: bold;">Magizoology Wiki</a>
+                <div class="resource-hint">👉 Use this to check the <strong>Habitat</strong> and <strong>Danger Level</strong>.</div>
             </li>
+            <br>
             <li>
                 <strong>Dictionary (For difficult spells/words):</strong><br>
                 <a href="https://www.wordreference.com/" target="_blank" style="color: var(--gryffindor-red); font-weight: bold;">WordReference Dictionary</a>
+                <div class="resource-hint">👉 Use this if you don't know an English word. Do not use Google Translate for full sentences!</div>
             </li>
         </ul>
-        <p><em>*Note: Ensure you only use the information relevant to the task. Do not copy and paste! Use your own words.*</em></p>
+        <p><em>*Warning: Do not copy and paste text directly. Re-write it in your own simple English!*</em></p>
     </div>
 
     <div id="evaluation" class="section-content">
@@ -444,12 +503,23 @@
 
     <div id="conclusion" class="section-content">
         <h2>Mischief Managed!</h2>
-        <p>Congratulations, students! You have successfully completed the WebQuest.</p>
-        <p>By creating this guide, you have helped keep Hogwarts safe and learned new English vocabulary.</p>
-        <p><strong>Reflection:</strong></p>
+        <p>Congratulations, students! You have successfully completed the WebQuest and earned your Creature Permits.</p>
+        
+        <div class="task-box" style="border-left-color: var(--gold);">
+            <h3>Skills Unlocked 🔓</h3>
+            <p>By completing this mission, you have learned:</p>
+            <ul>
+                <li><strong>English:</strong> How to use adjectives to describe appearance.</li>
+                <li><strong>Research:</strong> How to find specific facts in a text.</li>
+                <li><strong>Teamwork:</strong> How to split tasks and help a partner.</li>
+                <li><strong>Speaking:</strong> How to present information clearly.</li>
+            </ul>
+        </div>
+
+        <p><strong>Final Reflection:</strong> Discuss with your partner:</p>
         <ul>
-            <li>What was the most difficult part of working in pairs?</li>
-            <li>Which creature did you find most interesting?</li>
+            <li>What was the most difficult word you learned today?</li>
+            <li>If you could have one of these creatures as a pet, which one would it be and why?</li>
         </ul>
         <p>See you in the next Flying Lesson!</p>
     </div>
