@@ -204,7 +204,8 @@
         .intro-img {
             display: block; 
             margin: 20px auto; 
-            width: 100%;
+            width: 100%; /* Changed to 100% for full width */
+            max-width: 250px; /* Max size for larger screens */
             height: auto;
             filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
@@ -244,6 +245,34 @@
         .download-btn:hover {
             background-color: #004d00;
         }
+
+        /* Responsive adjustments for mobile */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            h1 {
+                font-size: 2.2em; /* Smaller title on mobile */
+                line-height: 1.1;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            body {
+                font-size: 16px; /* Smaller base font */
+            }
+            .nav-tabs {
+                gap: 5px;
+            }
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            .intro-img {
+                max-width: 100%; 
+            }
+        }
     </style>
 </head>
 <body>
@@ -271,7 +300,7 @@
         <p>Professor Hagrid has lost his notebook! The Ministry of Magic is sending inspectors to Hogwarts next week to check if students know how to handle magical creatures safely.</p>
         <p>We need your help. You must become <strong>Magizoologists</strong> (experts in magical creatures). Your mission is to research a specific magical creature and create a guide so the rest of the school stays safe.</p>
         <p>Are you ready to open your books and cast some spells? Grab your wands!</p>
-        <img class="intro-img" src="https://i.pinimg.com/originals/2d/b0/6f/2db06f10365f641495c8532acb6c71ac.gif"  alt="Sorting Hat">
+        <img class="intro-img" src="https://cdn-icons-png.flaticon.com/512/1066/1066373.png" alt="Sorting Hat">
     </div>
 
     <div id="task" class="section-content">
@@ -644,4 +673,3 @@
 
 </body>
 </html>
-
