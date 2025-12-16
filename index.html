@@ -124,12 +124,19 @@
             font-size: 1.1em;
         }
 
+        .table-responsive {
+            width: 100%; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+            margin-top: 25px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 25px;
             font-family: 'Cinzel', serif;
             font-size: 0.9em;
+            margin: 0; 
         }
 
         th, td {
@@ -204,8 +211,8 @@
         .intro-img {
             display: block; 
             margin: 20px auto; 
-            width: 100%; /* Changed to 100% for full width */
-            
+            width: 100%; 
+            max-width: 250px; 
             height: auto;
             filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
@@ -246,21 +253,20 @@
             background-color: #004d00;
         }
 
-        /* Responsive adjustments for mobile */
         @media screen and (max-width: 600px) {
             .container {
                 padding: 20px;
                 margin: 0 10px;
             }
             h1 {
-                font-size: 2.2em; /* Smaller title on mobile */
+                font-size: 2.2em; 
                 line-height: 1.1;
             }
             h2 {
                 font-size: 1.8em;
             }
             body {
-                font-size: 16px; /* Smaller base font */
+                font-size: 16px; 
             }
             .nav-tabs {
                 gap: 5px;
@@ -271,6 +277,14 @@
             }
             .intro-img {
                 max-width: 100%; 
+            }
+            
+            .table-responsive table {
+                min-width: 550px; 
+                font-size: 0.8em;
+            }
+            .table-responsive th, .table-responsive td {
+                padding: 8px 10px; 
             }
         }
     </style>
@@ -372,47 +386,51 @@
     <div id="evaluation" class="section-content">
         <h2>Grading Rubric (O.W.L.s)</h2>
         <p>How will the Ministry assess your work?</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Outstanding (10-9)</th>
-                    <th>Exceeds Expectations (8-7)</th>
-                    <th>Acceptable (6-5)</th>
-                    <th>Troll (4-0)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>English Grammar</strong></td>
-                    <td>Perfect grammar and wide vocabulary.</td>
-                    <td>Good grammar, minor mistakes.</td>
-                    <td>Basic sentences, some errors.</td>
-                    <td>Hard to understand.</td>
-                </tr>
-                <tr>
-                    <td><strong>Content</strong></td>
-                    <td>All 5 sections detailed clearly.</td>
-                    <td>Missing 1 section or low detail.</td>
-                    <td>Missing 2-3 sections.</td>
-                    <td>Incomplete.</td>
-                </tr>
-                <tr>
-                    <td><strong>Visual Design</strong></td>
-                    <td>Magical, creative, and neat.</td>
-                    <td>Clear and organized.</td>
-                    <td>A bit messy but readable.</td>
-                    <td>Messy and unclear.</td>
-                </tr>
-                <tr>
-                    <td><strong>Pair Work</strong></td>
-                    <td>Excellent collaboration.</td>
-                    <td>Good teamwork.</td>
-                    <td>One person did most work.</td>
-                    <td>No cooperation.</td>
-                </tr>
-            </tbody>
-        </table>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Outstanding (10-9)</th>
+                        <th>Exceeds Expectations (8-7)</th>
+                        <th>Acceptable (6-5)</th>
+                        <th>Troll (4-0)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>English Grammar</strong></td>
+                        <td>Perfect grammar and wide vocabulary.</td>
+                        <td>Good grammar, minor mistakes.</td>
+                        <td>Basic sentences, some errors.</td>
+                        <td>Hard to understand.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Content</strong></td>
+                        <td>All 5 sections detailed clearly.</td>
+                        <td>Missing 1 section or low detail.</td>
+                        <td>Missing 2-3 sections.</td>
+                        <td>Incomplete.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visual Design</strong></td>
+                        <td>Magical, creative, and neat.</td>
+                        <td>Clear and organized.</td>
+                        <td>A bit messy but readable.</td>
+                        <td>Messy and unclear.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pair Work</strong></td>
+                        <td>Excellent collaboration.</td>
+                        <td>Good teamwork.</td>
+                        <td>One person did most work.</td>
+                        <td>No cooperation.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
     <div id="game" class="section-content">
@@ -673,5 +691,3 @@
 
 </body>
 </html>
-
-
