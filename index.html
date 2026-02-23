@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ministry of Magic: The Mystery Investigation</title>
+    <title>Ministry of Magic: The Great Career Quest</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
     
     <style>
@@ -26,18 +26,18 @@
         }
 
         .container {
-            max-width: 950px;
+            max-width: 1000px;
             margin: 0 auto;
             background-color: var(--parchment);
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 0 20px var(--gold);
-            border: 3px solid var(--gold);
+            box-shadow: 0 0 30px var(--gold);
+            border: 4px solid var(--gold);
         }
 
         header {
             text-align: center;
-            border-bottom: 4px double var(--gryffindor-red);
+            border-bottom: 5px double var(--gryffindor-red);
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
@@ -45,11 +45,12 @@
         h1 {
             font-family: 'Cinzel', serif;
             color: var(--gryffindor-red);
-            font-size: 2.8em;
-            margin-bottom: 10px;
+            font-size: 3em;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        h2 { color: var(--gryffindor-red); border-bottom: 2px solid var(--gold); }
+        h2 { color: var(--gryffindor-red); border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
         .nav-tabs {
             display: flex;
@@ -63,147 +64,194 @@
             background-color: var(--gryffindor-red);
             color: var(--gold);
             border: 2px solid var(--gold);
-            padding: 10px 15px;
+            padding: 12px 20px;
             cursor: pointer;
             font-family: 'Cinzel', serif;
             border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        .tab-btn.active {
+        .tab-btn:hover, .tab-btn.active {
             background-color: var(--gold);
             color: var(--gryffindor-red);
+            transform: scale(1.05);
         }
 
-        .section-content { display: none; animation: fadeIn 0.5s; }
+        .section-content { display: none; animation: fadeIn 0.6s; }
         .section-content.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .task-box {
-            background-color: rgba(211, 166, 37, 0.1);
-            border-left: 5px solid var(--gryffindor-red);
-            padding: 15px;
-            margin-bottom: 20px;
+            background-color: rgba(116, 0, 1, 0.05);
+            border-left: 6px solid var(--gryffindor-red);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .grammar-scroll {
+            background: #fff9e8;
+            border: 2px dashed var(--gold);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
         }
 
         .game-area {
             background-color: #2b1b17;
             color: #fff;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
+            border: 3px solid var(--gold);
         }
 
         .game-btn {
             background-color: var(--gold);
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
+            color: var(--ink);
+            padding: 12px 24px;
+            margin: 8px;
+            border-radius: 8px;
             cursor: pointer;
             font-family: 'MedievalSharp';
             border: none;
+            font-size: 1.1em;
+            font-weight: bold;
         }
+
+        .game-btn:hover { background-color: #eec14d; }
 
         .certificate-form input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border: 2px solid var(--gryffindor-red);
             border-radius: 5px;
+            font-size: 1em;
+            background: #fff;
+        }
+
+        .intro-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid var(--gold);
+            margin-top: 20px;
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 50px;
             text-align: center;
-            font-size: 0.8em;
-            border-top: 1px solid var(--ink);
+            font-size: 0.9em;
+            border-top: 2px solid var(--gryffindor-red);
+            padding-top: 20px;
         }
 
-        .highlight-blue { color: #0056b3; font-weight: bold; }
+        .highlight { color: var(--gryffindor-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Ministry of Magic: Career Day</h1>
-        <p style="font-size: 1.2em;">Unit: The World of Work (3rd & 4th Grade)</p>
+        <h1>The Great Career Quest</h1>
+        <p style="font-size: 1.4em; color: var(--gryffindor-red);">Official Ministry of Magic Training</p>
     </header>
 
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="openTab('intro')">Introduction</button>
-        <button class="tab-btn" onclick="openTab('task')">The Task</button>
-        <button class="tab-btn" onclick="openTab('process')">The Process</button>
-        <button class="tab-btn" onclick="openTab('game')">Mystery Quiz</button>
-        <button class="tab-btn" onclick="openTab('certificate')">Ministry ID</button>
+        <button class="tab-btn active" onclick="openTab('intro')">Welcome</button>
+        <button class="tab-btn" onclick="openTab('grammar')">Grammar Scrolls</button>
+        <button class="tab-btn" onclick="openTab('task')">The Mission</button>
+        <button class="tab-btn" onclick="openTab('process')">The Journey</button>
+        <button class="tab-btn" onclick="openTab('game')">Veritaserum Quiz</button>
+        <button class="tab-btn" onclick="openTab('certificate')">Get ID Card</button>
     </div>
 
     <div id="intro" class="section-content active">
-        <h2>Welcome to the Ministry!</h2>
-        <p>Attention! There is a mystery at the Ministry of Magic. Someone stole a Golden Snitch yesterday!</p>
-        <p>We need new <strong>Aurors</strong> (police), <strong>Journalists</strong>, and <strong>Engineers</strong> to help us.</p>
-        <p>In this WebQuest, you will learn about jobs and investigate what people <span class="highlight-blue">were doing</span> when the Snitch disappeared.</p>
-        <img style="width:100%; border-radius:10px; margin-top:15px;" src="https://i.pinimg.com/originals/de/24/85/de24855079a49931758656121408892d.gif" alt="Ministry">
+        <h2>Greetings, Young Wizard!</h2>
+        <p>The Ministry of Magic is expanding! We need talented students to fill important positions. Are you ready to discover your magical future?</p>
+        <p>In this WebQuest, you will explore the <strong>"World of Work"</strong>. You will learn about different jobs, where people work, and how to describe what they <span class="highlight">were doing</span> during their shifts.</p>
+        <p>Prepare your quill and parchment. Your career starts today!</p>
+        <img class="intro-img" src="https://i.pinimg.com/originals/de/24/85/de24855079a49931758656121408892d.gif" alt="Ministry of Magic Entrance">
+    </div>
+
+    <div id="grammar" class="section-content">
+        <h2>The Magic of Language</h2>
+        <div class="grammar-scroll">
+            <h3>📜 Scroll 1: Tag Questions</h3>
+            <p>Use these to confirm information. It's like a truth charm!</p>
+            <ul>
+                <li>You are a doctor, <span class="highlight">aren't you?</span></li>
+                <li>He works in a factory, <span class="highlight">doesn't he?</span></li>
+                <li>They can fly, <span class="highlight">can't they?</span></li>
+            </ul>
+        </div>
+        <div class="grammar-scroll">
+            <h3>📜 Scroll 2: Past Continuous</h3>
+            <p>To describe actions in progress in the past (Yesterday at 10:00).</p>
+            <ul>
+                <li>I <span class="highlight">was working</span> in the office.</li>
+                <li>You <span class="highlight">were wearing</span> a blue uniform.</li>
+                <li>We <span class="highlight">weren't sleeping</span> at the fire station.</li>
+            </ul>
+        </div>
     </div>
 
     <div id="task" class="section-content">
-        <h2>Your Magic Mission</h2>
+        <h2>Your Mission Objectives</h2>
         <div class="task-box">
-            <h3>1. The Job Profile</h3>
-            <p>Pick a job from <strong>page 69</strong>. Describe their workplace and their uniform.</p>
+            <h3>1. Professional Research</h3>
+            <p>Find 5 different jobs in your book (Pages 69-70). Write their names and their <strong>Workplaces</strong> (Example: <em>Nurse - Hospital</em>).</p>
         </div>
         <div class="task-box">
-            <h3>2. The Alibi (The Mystery)</h3>
-            <p>Use the <span class="highlight-blue">Past Continuous</span> to say what your character was doing at 10:00 AM yesterday.</p>
-            <p><em>Example: "I was working in the laboratory."</em></p>
+            <h3>2. The Mystery Alibi</h3>
+            <p>Imagine there was a magical accident yesterday at 5:00 PM. Write a short paragraph describing what you <span class="highlight">were doing</span> and where you were.</p>
         </div>
         <div class="task-box">
-            <h3>3. The Truth Healer</h3>
-            <p>Confirm information using <strong>Tag Questions</strong>.</p>
-            <p><em>Example: "You are a mechanic, aren't you?"</em></p>
+            <h3>3. Oral Examination</h3>
+            <p>Practice with a partner. Ask them 3 <strong>Tag Questions</strong> about their favorite job.</p>
         </div>
     </div>
 
     <div id="process" class="section-content">
-        <h2>The 3 Sessions</h2>
-        <h3>Session 1: Vocabulary Search</h3>
-        <p>Open your book at <strong>pages 69 and 70</strong>. Find 4 jobs and 4 places (factory, hospital, etc.).</p>
+        <h2>The Step-by-Step Journey</h2>
+        <h3>📍 Step 1: The Library (Session 1)</h3>
+        <p>Use your Class Book. Identify vocabulary: <em>Mechanic, Pilot, Journalist, Firefighter, Engineer</em>. Write them in your notebook with a small drawing of their workplace.</p>
         
-        <h3>Session 2: The Investigation (Page 72)</h3>
-        <p>Imagine you are a witness. Write 3 sentences in your notebook:</p>
-        <ul>
-            <li><em>"Yesterday at 10:00, I <strong>was wearing</strong> my uniform."</em></li>
-            <li><em>"I <strong>was working</strong> in the office."</em></li>
-            <li><em>"My partner <strong>was helping</strong> a patient."</em></li>
-        </ul>
+        <h3>📍 Step 2: Drafting the Alibi (Session 2)</h3>
+        <p>Look at <strong>Page 72</strong>. Use the "Grammar Spotlight". Write your alibi using: <em>"I was... / He was... / They were..."</em>. Make sure to mention your uniform!</p>
 
-        <h3>Session 3: Final Poster</h3>
-        <p>Create a poster with your "Ministry Job". Present it to the class and ask your friends 2 tag questions.</p>
+        <h3>📍 Step 3: Final Presentation (Session 3)</h3>
+        <p>Prepare a small card with your job, workplace, and one "Past Continuous" sentence. Present it to the Ministry (the teacher) to get your points!</p>
     </div>
 
     <div id="game" class="section-content">
-        <h2>The Veritaserum Challenge</h2>
+        <h2>The Ultimate Veritaserum Quiz</h2>
         <div class="game-area">
-            <h3 id="question-text">Can you solve the mystery?</h3>
+            <h3 id="question-text">Are you ready to prove your knowledge?</h3>
             <div id="answers-container"></div>
-            <p class="result-msg" id="result-msg"></p>
-            <p style="font-size: 1.2em;">Magic Score: <span id="score">0</span>/6</p>
-            <button class="game-btn" onclick="startGame()">Start Duel</button>
+            <p id="result-msg" style="font-weight:bold; font-size:1.2em; margin: 15px 0;"></p>
+            <p style="font-size: 1.3em;">Magic Points: <span id="score">0</span> / <span id="total-q">20</span></p>
+            <button id="start-btn" class="game-btn" onclick="startGame()">Start 20-Question Duel</button>
         </div>
     </div>
 
     <div id="certificate" class="section-content">
-        <h2>Ministry ID Card</h2>
-        <p>Type your name and your job to receive your official permit.</p>
+        <h2>Ministry Professional ID</h2>
+        <p>Complete the form to generate your official Ministry of Magic ID Card.</p>
         <div class="certificate-form">
-            <input type="text" id="wizard-1" placeholder="Wizard / Witch Name">
-            <input type="text" id="job-name" placeholder="Magical Job (e.g. Dragon Mechanic)">
-            <button class="game-btn" style="background: var(--gryffindor-red); color: white;" onclick="generateCertificate()">Download My ID Card</button>
+            <input type="text" id="wizard-name" placeholder="Full Wizard/Witch Name">
+            <input type="text" id="wizard-job" placeholder="Your Chosen Job (e.g., Auror Pilot)">
+            <input type="text" id="wizard-place" placeholder="Workplace (e.g., London Airport)">
+            <button class="game-btn" style="background: var(--gryffindor-red); color: white; width:100%;" onclick="generateCertificate()">Download My ID Card</button>
         </div>
     </div>
 
     <footer>
-        <p>Created for Primary School English | Unit: Jobs & Past Continuous | <strong>By Jesús Moreno Velasco</strong></p>
+        <p>Unit: The World of Work | <strong>Created by Jesús Moreno Velasco</strong> | Hogwarts English Dept.</p>
     </footer>
 </div>
 
@@ -218,66 +266,101 @@
         if (event) event.currentTarget.classList.add('active');
     }
 
-    const questions = [
-        { q: "A journalist works in a...", answers: ["Hospital", "Newspaper", "Airport"], correct: 1 },
-        { q: "Past Continuous: At 9:00, I _____ (work).", answers: ["were working", "was working", "am working"], correct: 1 },
-        { q: "Tag Question: You are a pilot, ______?", answers: ["aren't you", "don't you", "are you"], correct: 0 },
-        { q: "Where do engineers work?", answers: ["In factories", "In schools", "In shops"], correct: 0 },
-        { q: "Past Continuous: They _____ (wear) a uniform.", answers: ["was wearing", "were wearing", "are wearing"], correct: 1 },
-        { q: "Tag Question: You work in an office, ______?", answers: ["aren't you", "don't you", "do you"], correct: 1 }
+    const allQuestions = [
+        { q: "A journalist works for a...", a: ["Hospital", "Newspaper", "Factory"], c: 1 },
+        { q: "Where does a mechanic work?", a: ["Garage", "Office", "School"], c: 0 },
+        { q: "Complete: You are a teacher, _______?", a: ["don't you", "aren't you", "do you"], c: 1 },
+        { q: "Yesterday at 4:00, I ______ (read).", a: ["was reading", "were reading", "am reading"], c: 0 },
+        { q: "A pilot works in an...", a: ["Office", "Airport", "Station"], c: 1 },
+        { q: "Engineers usually work in...", a: ["Factories", "Parks", "Kitchens"], c: 0 },
+        { q: "Complete: He works in a hospital, _______?", a: ["isn't he", "doesn't he", "does he"], c: 1 },
+        { q: "They ______ (wear) uniforms last week.", a: ["was wearing", "were wearing", "are wearing"], c: 1 },
+        { q: "A firefighter works in a...", a: ["Fire station", "Police station", "Shop"], c: 0 },
+        { q: "Complete: You can swim, _______?", a: ["don't you", "can't you", "aren't you"], c: 1 },
+        { q: "At 10:00, she ______ (help) a patient.", a: ["was helping", "were helping", "is helping"], c: 0 },
+        { q: "Who re-builds cars and machines?", a: ["Journalist", "Mechanic", "Doctor"], c: 1 },
+        { q: "Where does a scientist work?", a: ["In a laboratory", "In a park", "In a gym"], c: 0 },
+        { q: "Tag Question: It is cold, _______?", a: ["isn't it", "doesn't it", "is it"], c: 0 },
+        { q: "We ______ (not / work) on Sunday.", a: ["wasn't working", "weren't working", "aren't working"], c: 1 },
+        { q: "A person who writes news is a...", a: ["Pilot", "Journalist", "Mechanic"], c: 1 },
+        { q: "You live in London, _______?", a: ["aren't you", "don't you", "do you"], c: 1 },
+        { q: "What ______ you doing at 8:00 PM?", a: ["was", "were", "are"], c: 1 },
+        { q: "Doctors and nurses work in a...", a: ["School", "Hospital", "Factory"], c: 1 },
+        { q: "The plural of 'Firefighter' is...", a: ["Firefighters", "Firefighteres", "Firefights"], c: 0 }
     ];
 
-    let currentQuestion = 0; let score = 0;
+    let currentQ = 0; let score = 0;
 
     function startGame() {
-        currentQuestion = 0; score = 0;
+        currentQ = 0; score = 0;
         document.getElementById('score').innerText = score;
-        document.getElementById('result-msg').innerText = "";
+        document.getElementById('start-btn').style.display = "none";
         loadQuestion();
     }
 
     function loadQuestion() {
         const container = document.getElementById('answers-container');
-        if (currentQuestion >= questions.length) {
-            document.getElementById('question-text').innerText = "Mystery Solved! You are an expert Auror.";
-            container.innerHTML = ""; return;
+        const msg = document.getElementById('result-msg');
+        msg.innerText = "";
+
+        if (currentQ >= allQuestions.length) {
+            document.getElementById('question-text').innerText = "Duel Over! Your Magic Rank: " + (score > 15 ? "Outstanding" : "Acceptable");
+            container.innerHTML = "";
+            document.getElementById('start-btn').style.display = "inline-block";
+            document.getElementById('start-btn').innerText = "Try Again";
+            return;
         }
-        const q = questions[currentQuestion];
-        document.getElementById('question-text').innerText = q.q;
+
+        const qData = allQuestions[currentQ];
+        document.getElementById('question-text').innerText = `Question ${currentQ + 1}: ${qData.q}`;
         container.innerHTML = "";
-        q.answers.forEach((ans, i) => {
+
+        qData.a.forEach((ans, i) => {
             const btn = document.createElement('button');
             btn.innerText = ans; btn.className = 'game-btn';
             btn.onclick = () => {
-                if(i === q.correct) { 
-                    score++; 
-                    document.getElementById('result-msg').innerText = "Correct! +10 points."; 
-                    document.getElementById('result-msg').style.color = "#4caf50";
-                } else { 
-                    document.getElementById('result-msg').innerText = "Wrong spell!"; 
-                    document.getElementById('result-msg').style.color = "#f44336";
+                if(i === qData.c) {
+                    score++;
+                    msg.innerText = "✨ Correct! +10 Points";
+                    msg.style.color = "#4caf50";
+                } else {
+                    msg.innerText = "❌ Expelliarmus! Wrong answer.";
+                    msg.style.color = "#f44336";
                 }
                 document.getElementById('score').innerText = score;
-                currentQuestion++;
-                setTimeout(loadQuestion, 1200);
+                currentQ++;
+                setTimeout(loadQuestion, 1000);
             };
             container.appendChild(btn);
         });
     }
 
     function generateCertificate() {
-        const name = document.getElementById('wizard-1').value;
-        const job = document.getElementById('job-name').value;
-        if(!name || !job) { alert("Please fill the gaps!"); return; }
+        const name = document.getElementById('wizard-name').value;
+        const job = document.getElementById('wizard-job').value;
+        const place = document.getElementById('wizard-place').value;
+        
+        if(!name || !job || !place) { alert("The Ministry needs all your data!"); return; }
+
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF('l', 'mm', 'a4');
+        
+        // Background
         doc.setFillColor(253, 245, 230); doc.rect(0, 0, 297, 210, 'F');
         doc.setDrawColor(116, 0, 1); doc.setLineWidth(2); doc.rect(10, 10, 277, 190, 'S');
+        
+        // Content
         doc.setTextColor(116, 0, 1); doc.setFontSize(35); doc.text("MINISTRY OF MAGIC", 148, 50, {align: 'center'});
-        doc.setTextColor(43, 27, 23); doc.setFontSize(22); doc.text("OFFICIAL EMPLOYEE CARD", 148, 70, {align: 'center'});
-        doc.setFontSize(25); doc.text("Witch/Wizard: " + name, 148, 110, {align: 'center'});
-        doc.text("Occupation: " + job, 148, 130, {align: 'center'});
-        doc.setFontSize(16); doc.text("This person is authorized to work in the Wizarding World.", 148, 160, {align: 'center'});
+        doc.setTextColor(43, 27, 23); doc.setFontSize(20); doc.text("OFFICIAL OCCUPATION PERMIT", 148, 65, {align: 'center'});
+        
+        doc.setFontSize(24);
+        doc.text("Name: " + name, 40, 100);
+        doc.text("Job Title: " + job, 40, 125);
+        doc.text("Workplace: " + place, 40, 150);
+        
+        doc.setFontSize(14);
+        doc.text("This ID validates that the bearer is a professional member of the Wizarding Community.", 148, 185, {align: 'center'});
+        
         doc.save('Ministry_ID_' + name + '.pdf');
     }
 </script>
