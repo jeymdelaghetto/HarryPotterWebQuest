@@ -147,17 +147,6 @@
 
         .game-btn:hover { background-color: #eec14d; transform: scale(1.05); }
 
-        .certificate-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid var(--gryffindor-red);
-            border-radius: 5px;
-            font-size: 1em;
-            background: #fff;
-            font-family: 'MedievalSharp', cursive;
-        }
-
         .intro-img {
             width: 100%;
             max-height: 400px;
@@ -179,7 +168,6 @@
             padding-top: 20px;
         }
 
-        /* Group Roles Styling */
         .role-badge {
             display: inline-block;
             background: var(--gryffindor-red);
@@ -189,6 +177,45 @@
             font-size: 0.9em;
             margin-right: 10px;
             font-family: 'Cinzel', serif;
+        }
+
+        /* --- ESTILOS ORIGINALES DEL CERTIFICADO --- */
+        .certificate-form label {
+            display: block;
+            margin-top: 20px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+        }
+
+        .certificate-form input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 2px solid var(--gryffindor-red);
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #fff9e8;
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        .download-btn {
+            background-color: #006400; 
+            color: white;
+            padding: 15px 30px;
+            border: 3px solid var(--gold);
+            border-radius: 10px;
+            font-size: 1.3em;
+            margin-top: 30px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .download-btn:hover {
+            background-color: #004d00;
         }
     </style>
 </head>
@@ -206,7 +233,7 @@
         <button class="tab-btn" onclick="openTab('task')">Team Mission</button>
         <button class="tab-btn" onclick="openTab('process')">The Plan</button>
         <button class="tab-btn" onclick="openTab('game')">O.W.L. Exams</button>
-        <button class="tab-btn" onclick="openTab('certificate')">Ministry ID</button>
+        <button class="tab-btn" onclick="openTab('certificate')">Certificate</button>
     </div>
 
     <div id="intro" class="section-content active">
@@ -258,7 +285,7 @@
         
         <div class="task-box">
             <h3><span class="role-badge">Goal 2</span> The Mystery News Story</h3>
-            <p>A Golden Snitch was stolen yesterday! Write a short news article telling the readers what your 4 characters <span class="magic-highlight">were doing</span> when it happened. (Past Continuous).</p>
+            <p>A Golden Snitch was stolen yesterday! Write a short news article telling the readers what your characters <span class="magic-highlight">were doing</span> when it happened. (Past Continuous).</p>
         </div>
         
         <div class="task-box">
@@ -298,18 +325,25 @@
     </div>
 
     <div id="certificate" class="section-content">
-        <h2>Official Ministry ID Generation</h2>
-        <p>Once your team finishes the presentation, claim your individual Ministry Badge.</p>
+        <h2>Magical Certificate of Completion</h2>
+        <p>Enter your team details below to claim your official Hogwarts Certificate, validating your proficiency in the World of Work!</p>
+        
         <div class="certificate-form">
-            <input type="text" id="wizard-name" placeholder="Your Full Wizard/Witch Name">
-            <input type="text" id="wizard-job" placeholder="Your Ministry Job (e.g., Head Auror, Muggle Expert)">
-            <input type="text" id="wizard-team" placeholder="Your Team's Name (e.g., The Golden Snitches)">
-            <button class="game-btn" style="background: var(--gryffindor-red); color: white; width:100%; border: 2px solid var(--gold);" onclick="generateCertificate()">Print Magic Badge</button>
+            <label for="team-name">Team Name (e.g., The Golden Snitches):</label>
+            <input type="text" id="team-name" placeholder="Enter Team Name" required>
+
+            <label for="wizard-1">Wizard/Witch 1 Name:</label>
+            <input type="text" id="wizard-1" placeholder="Enter first student's name" required>
+
+            <label for="wizard-2">Wizard/Witch 2 Name (Optional):</label>
+            <input type="text" id="wizard-2" placeholder="Enter second student's name">
+
+            <button class="download-btn" onclick="generateCertificate()">Download Magical Certificate</button>
         </div>
     </div>
 
     <footer>
-        <p>Unit: The World of Work | <strong>Created by Jesús Moreno Velasco</strong> | Hogwarts English Dept.</p>
+        <p>Unit: The World of Work | Designed for Primary English Class | <strong>Created by Jesús Moreno Velasco</strong></p>
     </footer>
 </div>
 
@@ -324,7 +358,7 @@
         if (event) event.currentTarget.classList.add('active');
     }
 
-    // 20 Questions mixing Harry Potter & Muggle Jobs + Grammar
+    // 20 Questions
     const allQuestions = [
         { q: "Hagrid works in the forest, _______?", a: ["doesn't he", "isn't he", "does he"], c: 0 },
         { q: "A muggle journalist works for a...", a: ["Hospital", "Newspaper", "Greenhouse"], c: 1 },
@@ -378,7 +412,6 @@
             const btn = document.createElement('button');
             btn.innerText = ans; btn.className = 'game-btn';
             btn.onclick = () => {
-                // Disable buttons after click to prevent multiple clicks
                 const allBtns = container.getElementsByTagName('button');
                 for(let b of allBtns) b.disabled = true;
 
@@ -398,36 +431,82 @@
         });
     }
 
+    /* --- JS ORIGINAL DEL CERTIFICADO --- */
     function generateCertificate() {
-        const name = document.getElementById('wizard-name').value;
-        const job = document.getElementById('wizard-job').value;
-        const team = document.getElementById('wizard-team').value;
-        
-        if(!name || !job || !team) { alert("The Ministry requires all fields to be filled!"); return; }
+        const teamName = document.getElementById('team-name').value.trim();
+        const wizard1 = document.getElementById('wizard-1').value.trim();
+        const wizard2 = document.getElementById('wizard-2').value.trim();
+
+        if (!teamName || !wizard1) {
+            alert("Please enter the Team Name and Wizard/Witch 1 Name.");
+            return;
+        }
 
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF('l', 'mm', 'a4');
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        const width = doc.internal.pageSize.getWidth();
+        const height = doc.internal.pageSize.getHeight();
         
-        // Background
-        doc.setFillColor(253, 245, 230); doc.rect(0, 0, 297, 210, 'F');
-        doc.setDrawColor(116, 0, 1); doc.setLineWidth(3); doc.rect(10, 10, 277, 190, 'S');
-        doc.setDrawColor(211, 166, 37); doc.setLineWidth(1); doc.rect(12, 12, 273, 186, 'S');
+        doc.setFillColor(253, 245, 230); 
+        doc.rect(0, 0, width, height, 'F');
         
-        // Content
-        doc.setTextColor(116, 0, 1); doc.setFontSize(35); doc.text("MINISTRY OF MAGIC", 148, 50, {align: 'center'});
-        doc.setTextColor(43, 27, 23); doc.setFontSize(20); doc.text("OFFICIAL DUAL-WORLD BADGE", 148, 65, {align: 'center'});
+        doc.setLineWidth(3);
+        doc.setDrawColor(116, 0, 1); 
+        doc.rect(10, 10, width - 20, height - 20, 'S');
         
+        doc.setLineWidth(1);
+        doc.setDrawColor(211, 166, 37); 
+        doc.rect(12, 12, width - 24, height - 24, 'S');
+
+        doc.setFont('times', 'bold');
+        doc.setTextColor(116, 0, 1); 
+        doc.setFontSize(30);
+        doc.text("Hogwarts School of Witchcraft and Wizardry", width / 2, 35, { align: 'center' });
+
+        doc.setFontSize(20);
+        doc.text("MAGICAL CAREER PROFICIENCY CERTIFICATE", width / 2, 50, { align: 'center' });
+
+        doc.setFont('times', 'normal');
+        doc.setTextColor(43, 27, 23); 
+        doc.setFontSize(18);
+        
+        doc.text("This official document certifies that the team:", width / 2, 75, { align: 'center' });
+
+        doc.setFontSize(28);
+        doc.setTextColor(116, 0, 1); 
+        doc.text(teamName.toUpperCase(), width / 2, 90, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.setTextColor(43, 27, 23); 
+        doc.text("Consisting of the brilliant students:", width / 2, 105, { align: 'center' });
+        
+        doc.setFontSize(20);
+        doc.text(wizard1 + (wizard2 ? ' and ' + wizard2 : ''), width / 2, 120, { align: 'center' });
+
+        doc.setFontSize(18);
+        doc.text("Have successfully completed the challenging 'World of Work' WebQuest,", width / 2, 145, { align: 'center' });
+        doc.text("demonstrating exemplary research and teamwork skills.", width / 2, 155, { align: 'center' });
+        
+        doc.setFont('times', 'bolditalic');
         doc.setFontSize(24);
-        doc.text("Witch / Wizard Name: " + name, 40, 100);
-        doc.text("Official Title: " + job, 40, 125);
-        doc.text("Department Team: " + team, 40, 150);
-        
-        doc.setFontSize(14);
-        doc.setTextColor(100, 100, 100);
-        doc.text("By decree of the Minister for Magic, this badge grants full access to Muggle & Magical workplaces.", 148, 185, {align: 'center'});
-        
-        doc.save('Ministry_Badge_' + name + '.pdf');
+        doc.setTextColor(30, 144, 255); 
+        doc.text("Hogwarts Awaits You Next Course!", width / 2, 175, { align: 'center' });
+
+        doc.setFontSize(12);
+        doc.setTextColor(43, 27, 23);
+        doc.text("Headmaster Albus Dumbledore", 40, 195);
+        doc.line(30, 190, 80, 190); 
+        doc.text("Professor Jesús Moreno Velasco", width - 80, 195); 
+        doc.line(width - 90, 190, width - 40, 190); 
+
+        doc.save(`Hogwarts_Certificate_${teamName}.pdf`);
     }
 </script>
+
 </body>
 </html>
