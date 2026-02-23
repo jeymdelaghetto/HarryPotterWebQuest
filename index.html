@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hogwarts WebQuest: The Magical Creature Report</title>
+    <title>Ministry of Magic: The Mystery Investigation</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
     
     <style>
@@ -21,9 +21,7 @@
             color: var(--ink);
             margin: 0;
             padding: 20px;
-            background-image: radial-gradient(#2e2e4e 1px, transparent 1px);
-            background-size: 20px 20px;
-            font-size: 20px;
+            font-size: 18px;
             line-height: 1.6;
         }
 
@@ -31,730 +29,257 @@
             max-width: 950px;
             margin: 0 auto;
             background-color: var(--parchment);
-            padding: 50px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 20px var(--gold);
             border: 3px solid var(--gold);
-            position: relative;
         }
 
         header {
             text-align: center;
             border-bottom: 4px double var(--gryffindor-red);
-            padding-bottom: 25px;
+            padding-bottom: 20px;
             margin-bottom: 30px;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
             color: var(--gryffindor-red);
-            font-size: 3.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            margin-bottom: 15px;
-            line-height: 1.2;
+            font-size: 2.8em;
+            margin-bottom: 10px;
         }
 
-        h2 {
-            color: var(--gryffindor-red);
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 10px;
-            font-size: 2.2em;
-            margin-top: 0;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            color: #4a0000;
-        }
-
-        .game-area h3 {
-            color: var(--gold); 
-        }
+        h2 { color: var(--gryffindor-red); border-bottom: 2px solid var(--gold); }
 
         .nav-tabs {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
+            gap: 10px;
+            margin-bottom: 30px;
         }
 
         .tab-btn {
             background-color: var(--gryffindor-red);
             color: var(--gold);
             border: 2px solid var(--gold);
-            padding: 12px 25px;
+            padding: 10px 15px;
             cursor: pointer;
             font-family: 'Cinzel', serif;
-            font-weight: bold;
-            font-size: 1.2em;
             border-radius: 8px;
-            transition: all 0.3s ease;
-            white-space: nowrap; 
         }
 
-        .tab-btn:hover, .tab-btn.active {
+        .tab-btn.active {
             background-color: var(--gold);
             color: var(--gryffindor-red);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
         }
 
-        .section-content {
-            display: none; 
-            animation: fadeIn 0.5s;
-        }
+        .section-content { display: none; animation: fadeIn 0.5s; }
+        .section-content.active { display: block; }
 
-        .section-content.active {
-            display: block;
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        ul {
-            list-style-type: square;
-            padding-left: 30px;
-        }
-
-        li {
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-
-        .table-responsive {
-            width: 100%; 
-            overflow-x: auto; 
-            -webkit-overflow-scrolling: touch; 
-            margin-top: 25px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9em;
-            margin: 0; 
-        }
-
-        th, td {
-            border: 2px solid var(--ink);
+        .task-box {
+            background-color: rgba(211, 166, 37, 0.1);
+            border-left: 5px solid var(--gryffindor-red);
             padding: 15px;
-            text-align: left;
-        }
-
-        th {
-            background-color: var(--gryffindor-red);
-            color: var(--parchment);
-            font-size: 1.1em;
-        }
-
-        tr:nth-child(even) {
-            background-color: rgba(0,0,0,0.05);
+            margin-bottom: 20px;
         }
 
         .game-area {
             background-color: #2b1b17;
             color: #fff;
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
-            border: 3px solid var(--gold);
             text-align: center;
-            margin-top: 40px;
         }
 
         .game-btn {
             background-color: var(--gold);
-            color: #2b1b17;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.3em;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
             cursor: pointer;
-            margin: 10px;
-            font-family: 'MedievalSharp', cursive;
-            border-radius: 8px;
-            transition: transform 0.2s;
+            font-family: 'MedievalSharp';
+            border: none;
         }
 
-        .game-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .result-msg {
-            font-size: 1.8em;
-            margin-top: 20px;
-            min-height: 40px;
-            font-weight: bold;
-        }
-        
-        .correct { color: #4caf50; }
-        .wrong { color: #f44336; }
-
-        footer {
-            margin-top: 60px;
-            text-align: center;
-            font-size: 1em;
-            color: #666;
-            border-top: 2px solid var(--ink);
-            padding-top: 15px;
-            font-family: 'Cinzel', serif;
-        }
-
-        .highlight {
-            font-weight: bold;
-            color: var(--gryffindor-red);
-            font-size: 1.1em;
-        }
-
-        .intro-img {
-            display: block; 
-            margin: 20px auto; 
-            width: 100%; 
-            height: auto;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-        }
-
-        .certificate-form label {
-            display: block;
-            margin-top: 20px;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-        }
-
-        .certificate-form input[type="text"] {
+        .certificate-form input {
             width: 100%;
-            padding: 12px;
-            margin-top: 8px;
+            padding: 10px;
+            margin: 10px 0;
             border: 2px solid var(--gryffindor-red);
             border-radius: 5px;
-            font-size: 1em;
-            box-sizing: border-box;
-            background-color: #fff9e8;
         }
 
-        .download-btn {
-            background-color: #006400; 
-            color: white;
-            padding: 15px 30px;
-            border: 3px solid var(--gold);
-            border-radius: 10px;
-            font-size: 1.3em;
-            margin-top: 30px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            transition: background-color 0.3s;
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8em;
+            border-top: 1px solid var(--ink);
         }
 
-        .download-btn:hover {
-            background-color: #004d00;
-        }
-
-        /* New styles for Task and Roles box */
-        .task-box {
-            background-color: rgba(211, 166, 37, 0.1);
-            border-left: 5px solid var(--gryffindor-red);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .role-box {
-            background: rgba(0,0,0,0.05); 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-bottom: 30px; 
-            border: 2px dashed var(--gold);
-        }
-
-        .resource-hint {
-            font-size: 0.9em;
-            color: #555;
-            font-style: italic;
-            margin-left: 20px;
-        }
-
-        @media screen and (max-width: 600px) {
-            .container {
-                padding: 20px;
-                margin: 0 10px;
-            }
-            h1 {
-                font-size: 2.2em; 
-                line-height: 1.1;
-            }
-            h2 {
-                font-size: 1.8em;
-            }
-            body {
-                font-size: 16px; 
-            }
-            .nav-tabs {
-                gap: 5px;
-            }
-            .tab-btn {
-                padding: 8px 15px;
-                font-size: 0.9em;
-            }
-            
-            .table-responsive table {
-                min-width: 550px; 
-                font-size: 0.8em;
-            }
-            .table-responsive th, .table-responsive td {
-                padding: 8px 10px; 
-            }
-        }
+        .highlight-blue { color: #0056b3; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>The Care of Magical Creatures</h1>
-        <p style="font-size: 1.5em;">A 6th Grade WebQuest Adventure</p>
+        <h1>Ministry of Magic: Career Day</h1>
+        <p style="font-size: 1.2em;">Unit: The World of Work (3rd & 4th Grade)</p>
     </header>
 
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="openTab('intro')">Introduction</button>
         <button class="tab-btn" onclick="openTab('task')">The Task</button>
         <button class="tab-btn" onclick="openTab('process')">The Process</button>
-        <button class="tab-btn" onclick="openTab('resources')">Resources</button>
-        <button class="tab-btn" onclick="openTab('evaluation')">Evaluation</button>
-        <button class="tab-btn" onclick="openTab('game')">Magical Quiz</button>
-        <button class="tab-btn" onclick="openTab('conclusion')">Conclusion</button>
-        <button class="tab-btn" onclick="openTab('certificate')">Certificate</button>
+        <button class="tab-btn" onclick="openTab('game')">Mystery Quiz</button>
+        <button class="tab-btn" onclick="openTab('certificate')">Ministry ID</button>
     </div>
 
     <div id="intro" class="section-content active">
-        <h2>Welcome, Young Wizards!</h2>
-        <p>Attention, 6th Grade students!</p>
-        <p>Professor Hagrid has lost his notebook! The Ministry of Magic is sending inspectors to Hogwarts next week to check if students know how to handle magical creatures safely.</p>
-        <p>We need your help. You must become <strong>Magizoologists</strong> (experts in magical creatures). Your mission is to research a specific magical creature and create a guide so the rest of the school stays safe.</p>
-        <p>Are you ready to open your books and cast some spells? Grab your wands!</p>
-        <img class="intro-img" src="https://i.pinimg.com/originals/2d/b0/6f/2db06f10365f641495c8532acb6c71ac.gif" alt="Sorting Hat">
+        <h2>Welcome to the Ministry!</h2>
+        <p>Attention! There is a mystery at the Ministry of Magic. Someone stole a Golden Snitch yesterday!</p>
+        <p>We need new <strong>Aurors</strong> (police), <strong>Journalists</strong>, and <strong>Engineers</strong> to help us.</p>
+        <p>In this WebQuest, you will learn about jobs and investigate what people <span class="highlight-blue">were doing</span> when the Snitch disappeared.</p>
+        <img style="width:100%; border-radius:10px; margin-top:15px;" src="https://i.pinimg.com/originals/de/24/85/de24855079a49931758656121408892d.gif" alt="Ministry">
     </div>
 
     <div id="task" class="section-content">
-        <h2>Your Mission Details</h2>
-        <p>You and your partner have one main goal: <strong>Earn your Creature Handling Permit</strong>. To do this, you must complete the following steps clearly:</p>
-        
+        <h2>Your Magic Mission</h2>
         <div class="task-box">
-            <h3>1. What will you create? (Product)</h3>
-            <p>You must make a <strong>"Magical Creature Fact File"</strong>. You can choose one of these formats:</p>
-            <ul>
-                <li>A <strong>Digital Slide</strong> (using PowerPoint, Canva, or Google Slides).</li>
-                <li>A <strong>Physical Poster</strong> (using A3 card, colored pencils, and drawings).</li>
-            </ul>
+            <h3>1. The Job Profile</h3>
+            <p>Pick a job from <strong>page 69</strong>. Describe their workplace and their uniform.</p>
         </div>
-
         <div class="task-box">
-            <h3>2. What must be included? (Content)</h3>
-            <p>Your Fact File must be written in <strong>English</strong> and include exactly these 5 points:</p>
-            <ul>
-                <li><strong>Name:</strong> The creature's name clearly visible.</li>
-                <li><strong>Appearance:</strong> Describe it using at least 3 adjectives (e.g., "shiny black fur").</li>
-                <li><strong>Habitat:</strong> Where does it live? (e.g., "Forests", "Mountains").</li>
-                <li><strong>Abilities:</strong> What magic can it do? (e.g., "It can become invisible").</li>
-                <li><strong>Danger Level:</strong> Is it safe or dangerous for Muggles?</li>
-            </ul>
+            <h3>2. The Alibi (The Mystery)</h3>
+            <p>Use the <span class="highlight-blue">Past Continuous</span> to say what your character was doing at 10:00 AM yesterday.</p>
+            <p><em>Example: "I was working in the laboratory."</em></p>
         </div>
-
         <div class="task-box">
-            <h3>3. How will you present it? (Oral)</h3>
-            <p>In Session 3, you will present your work to the class.</p>
-            <ul>
-                <li>Time: <strong>2 minutes</strong> per pair.</li>
-                <li><strong>Both</strong> partners must speak.</li>
-                <li>Do not just read! Look at the audience.</li>
-            </ul>
+            <h3>3. The Truth Healer</h3>
+            <p>Confirm information using <strong>Tag Questions</strong>.</p>
+            <p><em>Example: "You are a mechanic, aren't you?"</em></p>
         </div>
     </div>
 
     <div id="process" class="section-content">
-        <h2>The Process (3 Sessions)</h2>
+        <h2>The 3 Sessions</h2>
+        <h3>Session 1: Vocabulary Search</h3>
+        <p>Open your book at <strong>pages 69 and 70</strong>. Find 4 jobs and 4 places (factory, hospital, etc.).</p>
         
-        <div class="role-box">
-            <h3 style="color: var(--ink);">Cooperative Roles</h3>
-            <p>Work together! Assign these roles, but help each other:</p>
-            <ul>
-                <li><strong>The Magizoologist (Researcher):</strong> Responsible for finding the correct facts on the websites and checking spelling.</li>
-                <li><strong>The Daily Prophet Reporter (Designer):</strong> Responsible for drawing/designing the poster and organizing the text.</li>
-            </ul>
-            <p><em>*Note: You must switch roles halfway through!*</em></p>
-        </div>
-        
-        <h3>Session 1: The Library Search (Research)</h3>
+        <h3>Session 2: The Investigation (Page 72)</h3>
+        <p>Imagine you are a witness. Write 3 sentences in your notebook:</p>
         <ul>
-            <li>Select one creature: <em>Hippogriff, Niffler, Bowtruckle, Phoenix, or Thestral</em>.</li>
-            <li>Use the links in the <strong>Resources</strong> section.</li>
-            <li><strong>Magizoologist task:</strong> Write down the answers to the 5 content questions in your notebook.</li>
+            <li><em>"Yesterday at 10:00, I <strong>was wearing</strong> my uniform."</em></li>
+            <li><em>"I <strong>was working</strong> in the office."</em></li>
+            <li><em>"My partner <strong>was helping</strong> a patient."</em></li>
         </ul>
 
-        <hr style="border-color: var(--gold); margin: 30px 0;">
-
-        <h3>Session 2: The Quill & Ink (Creation)</h3>
-        <ul>
-            <li>Draft your text in English. Use full sentences!</li>
-            <li><em>Example: "The Niffler is a small, black creature. It likes shiny things."</em></li>
-            <li><strong>Reporter task:</strong> Begin creating the poster or slide. Add images or drawings.</li>
-            <li>Check your spelling together.</li>
-        </ul>
-
-        <hr style="border-color: var(--gold); margin: 30px 0;">
-
-        <h3>Session 3: The Great Hall (Presentation)</h3>
-        <ul>
-            <li>Rehearse your presentation twice.</li>
-            <li>Present your creature to the class (2 minutes).</li>
-            <li>Submit your link or poster to the professor.</li>
-        </ul>
-    </div>
-
-    <div id="resources" class="section-content">
-        <h2>Authorized Books & Scrolls</h2>
-        <p>Use these specific links to gather your intelligence. Read the hints to know what to look for!</p>
-        
-        <ul>
-            <li>
-                <strong>Wizarding World (Creatures):</strong><br>
-                <a href="https://www.wizardingworld.com/" target="_blank" style="color: var(--gryffindor-red); font-weight: bold;">Official Wizarding World</a> 
-                <div class="resource-hint">👉 Search your creature's name here. Best for finding <strong>Abilities</strong> and <strong>Appearance</strong>.</div>
-            </li>
-            <br>
-            <li>
-                <strong>Harry Potter Wiki:</strong><br>
-                <a href="https://harrypotter.fandom.com/wiki/Magizoology" target="_blank" style="color: var(--gryffindor-red); font-weight: bold;">Magizoology Wiki</a>
-                <div class="resource-hint">👉 Use this to check the <strong>Habitat</strong> and <strong>Danger Level</strong>.</div>
-            </li>
-            <br>
-            <li>
-                <strong>Dictionary (For difficult spells/words):</strong><br>
-                <a href="https://www.wordreference.com/" target="_blank" style="color: var(--gryffindor-red); font-weight: bold;">WordReference Dictionary</a>
-                <div class="resource-hint">👉 Use this if you don't know an English word. Do not use Google Translate for full sentences!</div>
-            </li>
-        </ul>
-        <p><em>*Warning: Do not copy and paste text directly. Re-write it in your own simple English!*</em></p>
-    </div>
-
-    <div id="evaluation" class="section-content">
-        <h2>Grading Rubric (O.W.L.s)</h2>
-        <p>How will the Ministry assess your work?</p>
-        
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Outstanding (10-9)</th>
-                        <th>Exceeds Expectations (8-7)</th>
-                        <th>Acceptable (6-5)</th>
-                        <th>Troll (4-0)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>English Grammar</strong></td>
-                        <td>Perfect grammar and wide vocabulary.</td>
-                        <td>Good grammar, minor mistakes.</td>
-                        <td>Basic sentences, some errors.</td>
-                        <td>Hard to understand.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Content</strong></td>
-                        <td>All 5 sections detailed clearly.</td>
-                        <td>Missing 1 section or low detail.</td>
-                        <td>Missing 2-3 sections.</td>
-                        <td>Incomplete.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Visual Design</strong></td>
-                        <td>Magical, creative, and neat.</td>
-                        <td>Clear and organized.</td>
-                        <td>A bit messy but readable.</td>
-                        <td>Messy and unclear.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pair Work</strong></td>
-                        <td>Excellent collaboration.</td>
-                        <td>Good teamwork.</td>
-                        <td>One person did most work.</td>
-                        <td>No cooperation.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+        <h3>Session 3: Final Poster</h3>
+        <p>Create a poster with your "Ministry Job". Present it to the class and ask your friends 2 tag questions.</p>
     </div>
 
     <div id="game" class="section-content">
-        <h2>The Dueling Club: Knowledge Quiz</h2>
-        <p>Before you submit your task, test your English and Magic knowledge to earn house points!</p>
-        
+        <h2>The Veritaserum Challenge</h2>
         <div class="game-area">
-            <h3 id="question-text">Press 'Start Duel' to begin!</h3>
+            <h3 id="question-text">Can you solve the mystery?</h3>
             <div id="answers-container"></div>
             <p class="result-msg" id="result-msg"></p>
-            <p style="font-size: 1.4em;">Score: <span id="score">0</span>/10</p>
+            <p style="font-size: 1.2em;">Magic Score: <span id="score">0</span>/6</p>
             <button class="game-btn" onclick="startGame()">Start Duel</button>
         </div>
     </div>
 
-    <div id="conclusion" class="section-content">
-        <h2>Mischief Managed!</h2>
-        <p>Congratulations, students! You have successfully completed the WebQuest and earned your Creature Permits.</p>
-        
-        <div class="task-box" style="border-left-color: var(--gold);">
-            <h3>Skills Unlocked 🔓</h3>
-            <p>By completing this mission, you have learned:</p>
-            <ul>
-                <li><strong>English:</strong> How to use adjectives to describe appearance.</li>
-                <li><strong>Research:</strong> How to find specific facts in a text.</li>
-                <li><strong>Teamwork:</strong> How to split tasks and help a partner.</li>
-                <li><strong>Speaking:</strong> How to present information clearly.</li>
-            </ul>
-        </div>
-
-        <p><strong>Final Reflection:</strong> Discuss with your partner:</p>
-        <ul>
-            <li>What was the most difficult word you learned today?</li>
-            <li>If you could have one of these creatures as a pet, which one would it be and why?</li>
-        </ul>
-        <p>See you in the next Flying Lesson!</p>
-    </div>
-
     <div id="certificate" class="section-content">
-        <h2>Magical Certificate of Completion</h2>
-        <p>Enter your team details below to claim your official Hogwarts Certificate, validating your proficiency in the Care of Magical Creatures!</p>
-        
+        <h2>Ministry ID Card</h2>
+        <p>Type your name and your job to receive your official permit.</p>
         <div class="certificate-form">
-            <label for="team-name">Team Name (e.g., The Golden Snitches):</label>
-            <input type="text" id="team-name" placeholder="Enter Team Name" required>
-
-            <label for="wizard-1">Wizard/Witch 1 Name:</label>
-            <input type="text" id="wizard-1" placeholder="Enter first student's name" required>
-
-            <label for="wizard-2">Wizard/Witch 2 Name:</label>
-            <input type="text" id="wizard-2" placeholder="Enter second student's name" required>
-
-            <button class="download-btn" onclick="generateCertificate()">Download Magical Certificate</button>
+            <input type="text" id="wizard-1" placeholder="Wizard / Witch Name">
+            <input type="text" id="job-name" placeholder="Magical Job (e.g. Dragon Mechanic)">
+            <button class="game-btn" style="background: var(--gryffindor-red); color: white;" onclick="generateCertificate()">Download My ID Card</button>
         </div>
     </div>
 
     <footer>
-        <p>Designed for 6th Grade Primary English Class | <strong>Created by Jesús Moreno Velasco</strong></p>
+        <p>Created for Primary School English | Unit: Jobs & Past Continuous | <strong>By Jesús Moreno Velasco</strong></p>
     </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <script>
     function openTab(tabId) {
         var contents = document.getElementsByClassName('section-content');
-        for (var i = 0; i < contents.length; i++) {
-            contents[i].classList.remove('active');
-        }
-        
+        for (var i = 0; i < contents.length; i++) contents[i].classList.remove('active');
         var buttons = document.getElementsByClassName('tab-btn');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
-        }
-
+        for (var i = 0; i < buttons.length; i++) buttons[i].classList.remove('active');
         document.getElementById(tabId).classList.add('active');
-        
-        const btns = document.querySelectorAll('.tab-btn');
-        btns.forEach(btn => {
-            if(btn.getAttribute('onclick').includes(tabId)) {
-                btn.classList.add('active');
-            }
-        });
+        if (event) event.currentTarget.classList.add('active');
     }
 
     const questions = [
-        {
-            q: "Which word best describes the Niffler?",
-            answers: ["Loud", "Shiny", "Cold", "Slow"],
-            correct: 1 
-        },
-        {
-            q: "A Hippogriff is half bird (eagle) and half what?",
-            answers: ["Dog", "Snake", "Horse", "Lion"],
-            correct: 2 
-        },
-        {
-            q: "Where does a Bowtruckle usually make its home?",
-            answers: ["In a river", "On a roof", "In a tree", "Under a rock"],
-            correct: 2 
-        },
-        {
-            q: "What is the past tense of the verb 'to study'?",
-            answers: ["Studied", "Studyed", "Studing", "Stude"],
-            correct: 0 
-        },
-        {
-            q: "Which creature comes back to life from ashes?",
-            answers: ["Dragon", "Unicorn", "Phoenix", "Troll"],
-            correct: 2 
-        },
-        {
-            q: "Complete the sentence: 'The students ______ learning English.'",
-            answers: ["is", "am", "are", "do"],
-            correct: 2 
-        },
-        {
-            q: "What must you do before approaching a Hippogriff?",
-            answers: ["Run away", "Bow to it", "Shout at it", "Offer food"],
-            correct: 1 
-        },
-        {
-            q: "What can a Thestral do?",
-            answers: ["Turn invisible for everyone", "Only be seen by those who have seen death", "Breathe fire", "Change its color"],
-            correct: 1 
-        },
-        {
-            q: "Choose the correct sentence:",
-            answers: ["She likes magical creatures.", "She like magical creatures.", "She liking magical creatures.", "She do like magical creatures."],
-            correct: 0 
-        },
-        {
-            q: "The Niffler carries valuable things in its...",
-            answers: ["Mouth", "Pockets", "Pouch", "Bag"],
-            correct: 2 
-        }
+        { q: "A journalist works in a...", answers: ["Hospital", "Newspaper", "Airport"], correct: 1 },
+        { q: "Past Continuous: At 9:00, I _____ (work).", answers: ["were working", "was working", "am working"], correct: 1 },
+        { q: "Tag Question: You are a pilot, ______?", answers: ["aren't you", "don't you", "are you"], correct: 0 },
+        { q: "Where do engineers work?", answers: ["In factories", "In schools", "In shops"], correct: 0 },
+        { q: "Past Continuous: They _____ (wear) a uniform.", answers: ["was wearing", "were wearing", "are wearing"], correct: 1 },
+        { q: "Tag Question: You work in an office, ______?", answers: ["aren't you", "don't you", "do you"], correct: 1 }
     ];
 
-    let currentQuestion = 0;
-    let score = 0;
+    let currentQuestion = 0; let score = 0;
 
     function startGame() {
-        currentQuestion = 0;
-        score = 0;
+        currentQuestion = 0; score = 0;
         document.getElementById('score').innerText = score;
         document.getElementById('result-msg').innerText = "";
         loadQuestion();
     }
 
     function loadQuestion() {
-        if (currentQuestion >= questions.length) {
-            document.getElementById('question-text').innerText = "Duel Over! You are a wizard!";
-            document.getElementById('answers-container').innerHTML = "";
-            return;
-        }
-
-        const q = questions[currentQuestion];
-        document.getElementById('question-text').innerText = (currentQuestion + 1) + ". " + q.q;
-        
         const container = document.getElementById('answers-container');
+        if (currentQuestion >= questions.length) {
+            document.getElementById('question-text').innerText = "Mystery Solved! You are an expert Auror.";
+            container.innerHTML = ""; return;
+        }
+        const q = questions[currentQuestion];
+        document.getElementById('question-text').innerText = q.q;
         container.innerHTML = "";
-
-        q.answers.forEach((ans, index) => {
+        q.answers.forEach((ans, i) => {
             const btn = document.createElement('button');
-            btn.innerText = ans;
-            btn.className = 'game-btn';
-            btn.onclick = () => checkAnswer(index);
+            btn.innerText = ans; btn.className = 'game-btn';
+            btn.onclick = () => {
+                if(i === q.correct) { 
+                    score++; 
+                    document.getElementById('result-msg').innerText = "Correct! +10 points."; 
+                    document.getElementById('result-msg').style.color = "#4caf50";
+                } else { 
+                    document.getElementById('result-msg').innerText = "Wrong spell!"; 
+                    document.getElementById('result-msg').style.color = "#f44336";
+                }
+                document.getElementById('score').innerText = score;
+                currentQuestion++;
+                setTimeout(loadQuestion, 1200);
+            };
             container.appendChild(btn);
         });
     }
 
-    function checkAnswer(selectedIndex) {
-        const q = questions[currentQuestion];
-        const msg = document.getElementById('result-msg');
-
-        if (selectedIndex === q.correct) {
-            score++;
-            msg.innerText = "Correct! 10 Points to Gryffindor!";
-            msg.className = "result-msg correct";
-        } else {
-            msg.innerText = "Expelliarmus! Wrong answer.";
-            msg.className = "result-msg wrong";
-        }
-
-        document.getElementById('score').innerText = score;
-        currentQuestion++;
-        
-        setTimeout(() => {
-            msg.innerText = "";
-            loadQuestion();
-        }, 1500);
-    }
-    
     function generateCertificate() {
-        const teamName = document.getElementById('team-name').value.trim();
-        const wizard1 = document.getElementById('wizard-1').value.trim();
-        const wizard2 = document.getElementById('wizard-2').value.trim();
-
-        if (!teamName || !wizard1) {
-            alert("Please enter the Team Name and Wizard/Witch 1 Name.");
-            return;
-        }
-
+        const name = document.getElementById('wizard-1').value;
+        const job = document.getElementById('job-name').value;
+        if(!name || !job) { alert("Please fill the gaps!"); return; }
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-            orientation: 'landscape',
-            unit: 'mm',
-            format: 'a4'
-        });
-
-        const width = doc.internal.pageSize.getWidth();
-        const height = doc.internal.pageSize.getHeight();
-        
-        doc.setFillColor(253, 245, 230); 
-        doc.rect(0, 0, width, height, 'F');
-        
-        doc.setLineWidth(3);
-        doc.setDrawColor(116, 0, 1); 
-        doc.rect(10, 10, width - 20, height - 20, 'S');
-        
-        doc.setLineWidth(1);
-        doc.setDrawColor(211, 166, 37); 
-        doc.rect(12, 12, width - 24, height - 24, 'S');
-
-        doc.setFont('times', 'bold');
-        doc.setTextColor(116, 0, 1); 
-        doc.setFontSize(30);
-        doc.text("Hogwarts School of Witchcraft and Wizardry", width / 2, 35, { align: 'center' });
-
-        doc.setFontSize(20);
-        doc.text("MAGICAL CREATURE PROFICIENCY CERTIFICATE", width / 2, 50, { align: 'center' });
-
-        doc.setFont('times', 'normal');
-        doc.setTextColor(43, 27, 23); 
-        doc.setFontSize(18);
-        
-        doc.text("This official document certifies that the team:", width / 2, 75, { align: 'center' });
-
-        doc.setFontSize(28);
-        doc.setTextColor(116, 0, 1); 
-        doc.text(teamName.toUpperCase(), width / 2, 90, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.setTextColor(43, 27, 23); 
-        doc.text("Consisting of the brilliant students:", width / 2, 105, { align: 'center' });
-        
-        doc.setFontSize(20);
-        doc.text(wizard1 + (wizard2 ? ' and ' + wizard2 : ''), width / 2, 120, { align: 'center' });
-
-        doc.setFontSize(18);
-        doc.text("Have successfully completed the challenging 'Care of Magical Creatures' WebQuest,", width / 2, 145, { align: 'center' });
-        doc.text("demonstrating exemplary research and teamwork skills.", width / 2, 155, { align: 'center' });
-        
-        doc.setFont('times', 'bolditalic');
-        doc.setFontSize(24);
-        doc.setTextColor(30, 144, 255); 
-        doc.text("Hogwarts Awaits You Next Course!", width / 2, 175, { align: 'center' });
-
-        doc.setFontSize(12);
-        doc.setTextColor(43, 27, 23);
-        doc.text("Headmaster Albus Dumbledore", 40, 195);
-        doc.line(30, 190, 80, 190); 
-        doc.text("Professor Jesús Moreno Velasco", width - 80, 195); 
-        doc.line(width - 90, 190, width - 40, 190); 
-
-        doc.save(`Hogwarts_Certificate_${teamName}.pdf`);
+        const doc = new jsPDF('l', 'mm', 'a4');
+        doc.setFillColor(253, 245, 230); doc.rect(0, 0, 297, 210, 'F');
+        doc.setDrawColor(116, 0, 1); doc.setLineWidth(2); doc.rect(10, 10, 277, 190, 'S');
+        doc.setTextColor(116, 0, 1); doc.setFontSize(35); doc.text("MINISTRY OF MAGIC", 148, 50, {align: 'center'});
+        doc.setTextColor(43, 27, 23); doc.setFontSize(22); doc.text("OFFICIAL EMPLOYEE CARD", 148, 70, {align: 'center'});
+        doc.setFontSize(25); doc.text("Witch/Wizard: " + name, 148, 110, {align: 'center'});
+        doc.text("Occupation: " + job, 148, 130, {align: 'center'});
+        doc.setFontSize(16); doc.text("This person is authorized to work in the Wizarding World.", 148, 160, {align: 'center'});
+        doc.save('Ministry_ID_' + name + '.pdf');
     }
 </script>
-
 </body>
 </html>
-
