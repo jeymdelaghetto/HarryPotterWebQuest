@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ministry of Magic: The Great Career Quest</title>
+    <title>Hogwarts & The Ministry: The Great Job Exchange</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --hogwarts-bg: #1a1a2e;
+            --hogwarts-bg: #11111e;
             --parchment: #fdf5e6;
             --gryffindor-red: #740001;
             --gold: #d3a625;
             --ink: #2b1b17;
+            --slytherin-green: #1a472a;
         }
 
         body {
             background-color: var(--hogwarts-bg);
+            background-image: radial-gradient(#2a2a35 1px, transparent 1px);
+            background-size: 20px 20px;
             font-family: 'MedievalSharp', cursive;
             color: var(--ink);
             margin: 0;
@@ -30,9 +33,10 @@
             margin: 0 auto;
             background-color: var(--parchment);
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px var(--gold);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(211, 166, 37, 0.4);
             border: 4px solid var(--gold);
+            position: relative;
         }
 
         header {
@@ -45,19 +49,25 @@
         h1 {
             font-family: 'Cinzel', serif;
             color: var(--gryffindor-red);
-            font-size: 3em;
+            font-size: 3.2em;
             margin: 10px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+            line-height: 1.1;
         }
 
-        h2 { color: var(--gryffindor-red); border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
+        h2 { 
+            color: var(--gryffindor-red); 
+            border-bottom: 2px solid var(--gold); 
+            padding-bottom: 5px; 
+            font-family: 'Cinzel', serif;
+        }
 
         .nav-tabs {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 35px;
         }
 
         .tab-btn {
@@ -69,22 +79,34 @@
             font-family: 'Cinzel', serif;
             border-radius: 8px;
             font-weight: bold;
-            transition: 0.3s;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
         }
 
         .tab-btn:hover, .tab-btn.active {
             background-color: var(--gold);
             color: var(--gryffindor-red);
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .section-content { display: none; animation: fadeIn 0.6s; }
         .section-content.active { display: block; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .owl-letter {
+            background-color: #f4e8d1;
+            border: 2px solid #8b4513;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+            font-style: italic;
+        }
 
         .task-box {
-            background-color: rgba(116, 0, 1, 0.05);
+            background-color: rgba(211, 166, 37, 0.15);
             border-left: 6px solid var(--gryffindor-red);
             padding: 20px;
             margin-bottom: 25px;
@@ -100,28 +122,30 @@
         }
 
         .game-area {
-            background-color: #2b1b17;
+            background-color: #1a1a24;
             color: #fff;
-            padding: 30px;
+            padding: 35px;
             border-radius: 20px;
             text-align: center;
-            border: 3px solid var(--gold);
+            border: 4px solid var(--gold);
+            box-shadow: inset 0 0 20px #000;
         }
 
         .game-btn {
             background-color: var(--gold);
             color: var(--ink);
-            padding: 12px 24px;
-            margin: 8px;
+            padding: 14px 28px;
+            margin: 10px;
             border-radius: 8px;
             cursor: pointer;
             font-family: 'MedievalSharp';
             border: none;
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: bold;
+            transition: 0.2s;
         }
 
-        .game-btn:hover { background-color: #eec14d; }
+        .game-btn:hover { background-color: #eec14d; transform: scale(1.05); }
 
         .certificate-form input {
             width: 100%;
@@ -131,6 +155,7 @@
             border-radius: 5px;
             font-size: 1em;
             background: #fff;
+            font-family: 'MedievalSharp', cursive;
         }
 
         .intro-img {
@@ -140,7 +165,11 @@
             border-radius: 15px;
             border: 3px solid var(--gold);
             margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
+
+        .highlight { color: var(--gryffindor-red); font-weight: bold; }
+        .magic-highlight { color: #0056b3; font-weight: bold; }
 
         footer {
             margin-top: 50px;
@@ -150,103 +179,132 @@
             padding-top: 20px;
         }
 
-        .highlight { color: var(--gryffindor-red); font-weight: bold; }
+        /* Group Roles Styling */
+        .role-badge {
+            display: inline-block;
+            background: var(--gryffindor-red);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            margin-right: 10px;
+            font-family: 'Cinzel', serif;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>The Great Career Quest</h1>
-        <p style="font-size: 1.4em; color: var(--gryffindor-red);">Official Ministry of Magic Training</p>
+        <h1>The Great Job Exchange</h1>
+        <p style="font-size: 1.4em; color: var(--gryffindor-red);">A Collaborative Mission by the Ministry of Magic</p>
     </header>
 
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="openTab('intro')">Welcome</button>
-        <button class="tab-btn" onclick="openTab('grammar')">Grammar Scrolls</button>
-        <button class="tab-btn" onclick="openTab('task')">The Mission</button>
-        <button class="tab-btn" onclick="openTab('process')">The Journey</button>
-        <button class="tab-btn" onclick="openTab('game')">Veritaserum Quiz</button>
-        <button class="tab-btn" onclick="openTab('certificate')">Get ID Card</button>
+        <button class="tab-btn active" onclick="openTab('intro')">Urgent Owl</button>
+        <button class="tab-btn" onclick="openTab('grammar')">Magic Spells</button>
+        <button class="tab-btn" onclick="openTab('task')">Team Mission</button>
+        <button class="tab-btn" onclick="openTab('process')">The Plan</button>
+        <button class="tab-btn" onclick="openTab('game')">O.W.L. Exams</button>
+        <button class="tab-btn" onclick="openTab('certificate')">Ministry ID</button>
     </div>
 
     <div id="intro" class="section-content active">
-        <h2>Greetings, Young Wizard!</h2>
-        <p>The Ministry of Magic is expanding! We need talented students to fill important positions. Are you ready to discover your magical future?</p>
-        <p>In this WebQuest, you will explore the <strong>"World of Work"</strong>. You will learn about different jobs, where people work, and how to describe what they <span class="highlight">were doing</span> during their shifts.</p>
-        <p>Prepare your quill and parchment. Your career starts today!</p>
-        <img class="intro-img" src="https://i.pinimg.com/originals/de/24/85/de24855079a49931758656121408892d.gif" alt="Ministry of Magic Entrance">
+        <h2>Urgent Message from the Minister!</h2>
+        <div class="owl-letter">
+            <p>"Dear Students of Hogwarts,</p>
+            <p>We have a crisis! The Muggle (non-magic) world and our Magical world are mixing. Muggles are seeing dragons, and wizards don't know how to use an airplane!</p>
+            <p>We need your help to create the <strong>'Dual-World Career Guide'</strong>. You must investigate Muggle jobs (like <em>Firefighters</em> and <em>Mechanics</em>) and compare them with Magical jobs (like <em>Gamekeepers</em> and <em>Aurors</em>).</p>
+            <p>Form your teams quickly. The magical statute of secrecy depends on you!"</p>
+            <p style="text-align: right;">— Hermione Granger, Minister for Magic</p>
+        </div>
+        <img class="intro-img" src="https://i.pinimg.com/originals/de/24/85/de24855079a49931758656121408892d.gif" alt="Ministry of Magic">
     </div>
 
     <div id="grammar" class="section-content">
         <h2>The Magic of Language</h2>
+        <p>To communicate with both worlds, you must master these two powerful grammar spells:</p>
+        
         <div class="grammar-scroll">
-            <h3>📜 Scroll 1: Tag Questions</h3>
-            <p>Use these to confirm information. It's like a truth charm!</p>
+            <h3>📜 Spell 1: The Truth Charm (Tag Questions)</h3>
+            <p>Use these to confirm information during your investigations.</p>
             <ul>
-                <li>You are a doctor, <span class="highlight">aren't you?</span></li>
-                <li>He works in a factory, <span class="highlight">doesn't he?</span></li>
-                <li>They can fly, <span class="highlight">can't they?</span></li>
+                <li>Hagrid is a Gamekeeper, <span class="highlight">isn't he?</span></li>
+                <li>You work in a Muggle factory, <span class="highlight">don't you?</span></li>
+                <li>Muggles can't fly, <span class="highlight">can they?</span></li>
             </ul>
         </div>
+        
         <div class="grammar-scroll">
-            <h3>📜 Scroll 2: Past Continuous</h3>
-            <p>To describe actions in progress in the past (Yesterday at 10:00).</p>
+            <h3>📜 Spell 2: The Time-Turner (Past Continuous)</h3>
+            <p>To describe actions in progress in the past. Vital for solving mysteries!</p>
             <ul>
-                <li>I <span class="highlight">was working</span> in the office.</li>
-                <li>You <span class="highlight">were wearing</span> a blue uniform.</li>
-                <li>We <span class="highlight">weren't sleeping</span> at the fire station.</li>
+                <li>Madam Pomfrey <span class="magic-highlight">was helping</span> a student in the hospital wing.</li>
+                <li>I <span class="magic-highlight">was wearing</span> my Auror uniform yesterday at 10:00.</li>
+                <li>The journalists <span class="magic-highlight">were writing</span> for the Daily Prophet.</li>
             </ul>
         </div>
     </div>
 
     <div id="task" class="section-content">
-        <h2>Your Mission Objectives</h2>
+        <h2>Your Team Mission (Group Work)</h2>
+        <p>You will work in <strong>Ministry Departments (Groups of 3 or 4)</strong>. Together, you must create the front page of the newspaper <em>"The Daily Prophet"</em>.</p>
+        
         <div class="task-box">
-            <h3>1. Professional Research</h3>
-            <p>Find 5 different jobs in your book (Pages 69-70). Write their names and their <strong>Workplaces</strong> (Example: <em>Nurse - Hospital</em>).</p>
+            <h3><span class="role-badge">Goal 1</span> The Front Page Poster</h3>
+            <p>Your newspaper must include <strong>2 Muggle jobs</strong> (from your book pages 69-70) and <strong>2 Magical jobs</strong> (e.g., Herbology Teacher, Gamekeeper, Auror, Healer).</p>
+            <p>Draw their workplaces (Hospital, Greenhouse, Fire Station, Forbidden Forest).</p>
         </div>
+        
         <div class="task-box">
-            <h3>2. The Mystery Alibi</h3>
-            <p>Imagine there was a magical accident yesterday at 5:00 PM. Write a short paragraph describing what you <span class="highlight">were doing</span> and where you were.</p>
+            <h3><span class="role-badge">Goal 2</span> The Mystery News Story</h3>
+            <p>A Golden Snitch was stolen yesterday! Write a short news article telling the readers what your 4 characters <span class="magic-highlight">were doing</span> when it happened. (Past Continuous).</p>
         </div>
+        
         <div class="task-box">
-            <h3>3. Oral Examination</h3>
-            <p>Practice with a partner. Ask them 3 <strong>Tag Questions</strong> about their favorite job.</p>
+            <h3><span class="role-badge">Goal 3</span> The Press Conference</h3>
+            <p>Your team will present the newspaper to the class. The other students will act as journalists and ask you <strong>Tag Questions</strong> to see if you are telling the truth!</p>
         </div>
     </div>
 
     <div id="process" class="section-content">
-        <h2>The Step-by-Step Journey</h2>
-        <h3>📍 Step 1: The Library (Session 1)</h3>
-        <p>Use your Class Book. Identify vocabulary: <em>Mechanic, Pilot, Journalist, Firefighter, Engineer</em>. Write them in your notebook with a small drawing of their workplace.</p>
+        <h2>The Step-by-Step Plan</h2>
         
-        <h3>📍 Step 2: Drafting the Alibi (Session 2)</h3>
-        <p>Look at <strong>Page 72</strong>. Use the "Grammar Spotlight". Write your alibi using: <em>"I was... / He was... / They were..."</em>. Make sure to mention your uniform!</p>
+        <h3>📍 Session 1: Forming the Department</h3>
+        <p>Choose your roles in the group:</p>
+        <ul>
+            <li><strong>The Muggle Expert:</strong> Finds vocabulary in the Class Book (Mechanic, Journalist, Factory, Airport...).</li>
+            <li><strong>The Magical Expert:</strong> Researches Hogwarts jobs (Hagrid the Gamekeeper, Sprout the Herbology Teacher, Pomfrey the Healer).</li>
+            <li><strong>The Chief Editor:</strong> Designs the Daily Prophet poster and organizes the team.</li>
+        </ul>
+        
+        <h3>📍 Session 2: Writing the News (The Time-Turner)</h3>
+        <p>Work together to write the sentences for the poster. Example:<br>
+        <em>"Yesterday at 5:00 PM, Hagrid was feeding the Hippogriffs. The muggle firefighter was sleeping in the fire station."</em></p>
 
-        <h3>📍 Step 3: Final Presentation (Session 3)</h3>
-        <p>Prepare a small card with your job, workplace, and one "Past Continuous" sentence. Present it to the Ministry (the teacher) to get your points!</p>
+        <h3>📍 Session 3: The Great Press Conference</h3>
+        <p>Stand up with your group. Present your poster. Be ready to answer tag questions from the class, like: <em>"Your muggle works in a garage, doesn't he?"</em></p>
     </div>
 
     <div id="game" class="section-content">
-        <h2>The Ultimate Veritaserum Quiz</h2>
+        <h2>O.W.L. Exams: The Veritaserum Quiz</h2>
         <div class="game-area">
-            <h3 id="question-text">Are you ready to prove your knowledge?</h3>
+            <h3 id="question-text">Prove your knowledge of Both Worlds!</h3>
             <div id="answers-container"></div>
-            <p id="result-msg" style="font-weight:bold; font-size:1.2em; margin: 15px 0;"></p>
-            <p style="font-size: 1.3em;">Magic Points: <span id="score">0</span> / <span id="total-q">20</span></p>
-            <button id="start-btn" class="game-btn" onclick="startGame()">Start 20-Question Duel</button>
+            <p id="result-msg" style="font-weight:bold; font-size:1.3em; margin: 15px 0; min-height: 35px;"></p>
+            <p style="font-size: 1.4em;">Gryffindor Points: <span id="score" style="color:var(--gold); font-size: 1.2em;">0</span> / 20</p>
+            <button id="start-btn" class="game-btn" onclick="startGame()">Start the Exam</button>
         </div>
     </div>
 
     <div id="certificate" class="section-content">
-        <h2>Ministry Professional ID</h2>
-        <p>Complete the form to generate your official Ministry of Magic ID Card.</p>
+        <h2>Official Ministry ID Generation</h2>
+        <p>Once your team finishes the presentation, claim your individual Ministry Badge.</p>
         <div class="certificate-form">
-            <input type="text" id="wizard-name" placeholder="Full Wizard/Witch Name">
-            <input type="text" id="wizard-job" placeholder="Your Chosen Job (e.g., Auror Pilot)">
-            <input type="text" id="wizard-place" placeholder="Workplace (e.g., London Airport)">
-            <button class="game-btn" style="background: var(--gryffindor-red); color: white; width:100%;" onclick="generateCertificate()">Download My ID Card</button>
+            <input type="text" id="wizard-name" placeholder="Your Full Wizard/Witch Name">
+            <input type="text" id="wizard-job" placeholder="Your Ministry Job (e.g., Head Auror, Muggle Expert)">
+            <input type="text" id="wizard-team" placeholder="Your Team's Name (e.g., The Golden Snitches)">
+            <button class="game-btn" style="background: var(--gryffindor-red); color: white; width:100%; border: 2px solid var(--gold);" onclick="generateCertificate()">Print Magic Badge</button>
         </div>
     </div>
 
@@ -266,27 +324,28 @@
         if (event) event.currentTarget.classList.add('active');
     }
 
+    // 20 Questions mixing Harry Potter & Muggle Jobs + Grammar
     const allQuestions = [
-        { q: "A journalist works for a...", a: ["Hospital", "Newspaper", "Factory"], c: 1 },
-        { q: "Where does a mechanic work?", a: ["Garage", "Office", "School"], c: 0 },
-        { q: "Complete: You are a teacher, _______?", a: ["don't you", "aren't you", "do you"], c: 1 },
-        { q: "Yesterday at 4:00, I ______ (read).", a: ["was reading", "were reading", "am reading"], c: 0 },
-        { q: "A pilot works in an...", a: ["Office", "Airport", "Station"], c: 1 },
-        { q: "Engineers usually work in...", a: ["Factories", "Parks", "Kitchens"], c: 0 },
-        { q: "Complete: He works in a hospital, _______?", a: ["isn't he", "doesn't he", "does he"], c: 1 },
-        { q: "They ______ (wear) uniforms last week.", a: ["was wearing", "were wearing", "are wearing"], c: 1 },
-        { q: "A firefighter works in a...", a: ["Fire station", "Police station", "Shop"], c: 0 },
-        { q: "Complete: You can swim, _______?", a: ["don't you", "can't you", "aren't you"], c: 1 },
-        { q: "At 10:00, she ______ (help) a patient.", a: ["was helping", "were helping", "is helping"], c: 0 },
-        { q: "Who re-builds cars and machines?", a: ["Journalist", "Mechanic", "Doctor"], c: 1 },
-        { q: "Where does a scientist work?", a: ["In a laboratory", "In a park", "In a gym"], c: 0 },
-        { q: "Tag Question: It is cold, _______?", a: ["isn't it", "doesn't it", "is it"], c: 0 },
-        { q: "We ______ (not / work) on Sunday.", a: ["wasn't working", "weren't working", "aren't working"], c: 1 },
-        { q: "A person who writes news is a...", a: ["Pilot", "Journalist", "Mechanic"], c: 1 },
-        { q: "You live in London, _______?", a: ["aren't you", "don't you", "do you"], c: 1 },
-        { q: "What ______ you doing at 8:00 PM?", a: ["was", "were", "are"], c: 1 },
-        { q: "Doctors and nurses work in a...", a: ["School", "Hospital", "Factory"], c: 1 },
-        { q: "The plural of 'Firefighter' is...", a: ["Firefighters", "Firefighteres", "Firefights"], c: 0 }
+        { q: "Hagrid works in the forest, _______?", a: ["doesn't he", "isn't he", "does he"], c: 0 },
+        { q: "A muggle journalist works for a...", a: ["Hospital", "Newspaper", "Greenhouse"], c: 1 },
+        { q: "Yesterday at 4:00, Professor Sprout ______ (plant) mandrakes.", a: ["was planting", "were planting", "is planting"], c: 0 },
+        { q: "Where does a muggle mechanic work?", a: ["Garage", "Ministry", "School"], c: 0 },
+        { q: "Complete: You are a Healer, _______?", a: ["don't you", "aren't you", "do you"], c: 1 },
+        { q: "A pilot works in an...", a: ["Office", "Airport", "Train Station"], c: 1 },
+        { q: "Who takes care of magical creatures at Hogwarts?", a: ["Auror", "Journalist", "Gamekeeper"], c: 2 },
+        { q: "Complete: Madam Pomfrey works in a hospital, _______?", a: ["isn't she", "doesn't she", "does she"], c: 1 },
+        { q: "The Aurors ______ (wear) dark uniforms yesterday.", a: ["was wearing", "were wearing", "are wearing"], c: 1 },
+        { q: "A firefighter works in a...", a: ["Fire station", "Police station", "Dungeon"], c: 0 },
+        { q: "Complete: You can ride a broom, _______?", a: ["don't you", "can't you", "aren't you"], c: 1 },
+        { q: "At 10:00, the engineers ______ (build) a new broom factory.", a: ["was building", "were building", "are building"], c: 1 },
+        { q: "Professor Sprout is a Herbology Teacher, _______?", a: ["doesn't she", "isn't she", "is she"], c: 1 },
+        { q: "Where does a Potion Master work?", a: ["In a laboratory", "In a park", "In an airport"], c: 0 },
+        { q: "Tag Question: It is dangerous in the Forbidden Forest, _______?", a: ["isn't it", "doesn't it", "is it"], c: 0 },
+        { q: "We ______ (not / sleep) when the troll escaped.", a: ["wasn't sleeping", "weren't sleeping", "aren't sleeping"], c: 1 },
+        { q: "A person who writes news for the Daily Prophet is a...", a: ["Pilot", "Journalist", "Healer"], c: 1 },
+        { q: "You live in Gryffindor Tower, _______?", a: ["aren't you", "don't you", "do you"], c: 1 },
+        { q: "What ______ Hermione doing in the library?", a: ["was", "were", "are"], c: 0 },
+        { q: "Muggle doctors and magical Healers both work in a...", a: ["School", "Hospital", "Factory"], c: 1 }
     ];
 
     let currentQ = 0; let score = 0;
@@ -304,32 +363,36 @@
         msg.innerText = "";
 
         if (currentQ >= allQuestions.length) {
-            document.getElementById('question-text').innerText = "Duel Over! Your Magic Rank: " + (score > 15 ? "Outstanding" : "Acceptable");
+            document.getElementById('question-text').innerText = "Exams Over! Grade: " + (score >= 15 ? "Outstanding (O)" : (score >= 10 ? "Exceeds Expectations (E)" : "Troll (T)"));
             container.innerHTML = "";
             document.getElementById('start-btn').style.display = "inline-block";
-            document.getElementById('start-btn').innerText = "Try Again";
+            document.getElementById('start-btn').innerText = "Retake Exam";
             return;
         }
 
         const qData = allQuestions[currentQ];
-        document.getElementById('question-text').innerText = `Question ${currentQ + 1}: ${qData.q}`;
+        document.getElementById('question-text').innerText = `Q${currentQ + 1}: ${qData.q}`;
         container.innerHTML = "";
 
         qData.a.forEach((ans, i) => {
             const btn = document.createElement('button');
             btn.innerText = ans; btn.className = 'game-btn';
             btn.onclick = () => {
+                // Disable buttons after click to prevent multiple clicks
+                const allBtns = container.getElementsByTagName('button');
+                for(let b of allBtns) b.disabled = true;
+
                 if(i === qData.c) {
                     score++;
-                    msg.innerText = "✨ Correct! +10 Points";
+                    msg.innerText = "✨ Correct Spell! +1 Point";
                     msg.style.color = "#4caf50";
                 } else {
-                    msg.innerText = "❌ Expelliarmus! Wrong answer.";
+                    msg.innerText = "❌ Obliviate! Wrong answer.";
                     msg.style.color = "#f44336";
                 }
                 document.getElementById('score').innerText = score;
                 currentQ++;
-                setTimeout(loadQuestion, 1000);
+                setTimeout(loadQuestion, 1200);
             };
             container.appendChild(btn);
         });
@@ -338,30 +401,32 @@
     function generateCertificate() {
         const name = document.getElementById('wizard-name').value;
         const job = document.getElementById('wizard-job').value;
-        const place = document.getElementById('wizard-place').value;
+        const team = document.getElementById('wizard-team').value;
         
-        if(!name || !job || !place) { alert("The Ministry needs all your data!"); return; }
+        if(!name || !job || !team) { alert("The Ministry requires all fields to be filled!"); return; }
 
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF('l', 'mm', 'a4');
         
         // Background
         doc.setFillColor(253, 245, 230); doc.rect(0, 0, 297, 210, 'F');
-        doc.setDrawColor(116, 0, 1); doc.setLineWidth(2); doc.rect(10, 10, 277, 190, 'S');
+        doc.setDrawColor(116, 0, 1); doc.setLineWidth(3); doc.rect(10, 10, 277, 190, 'S');
+        doc.setDrawColor(211, 166, 37); doc.setLineWidth(1); doc.rect(12, 12, 273, 186, 'S');
         
         // Content
         doc.setTextColor(116, 0, 1); doc.setFontSize(35); doc.text("MINISTRY OF MAGIC", 148, 50, {align: 'center'});
-        doc.setTextColor(43, 27, 23); doc.setFontSize(20); doc.text("OFFICIAL OCCUPATION PERMIT", 148, 65, {align: 'center'});
+        doc.setTextColor(43, 27, 23); doc.setFontSize(20); doc.text("OFFICIAL DUAL-WORLD BADGE", 148, 65, {align: 'center'});
         
         doc.setFontSize(24);
-        doc.text("Name: " + name, 40, 100);
-        doc.text("Job Title: " + job, 40, 125);
-        doc.text("Workplace: " + place, 40, 150);
+        doc.text("Witch / Wizard Name: " + name, 40, 100);
+        doc.text("Official Title: " + job, 40, 125);
+        doc.text("Department Team: " + team, 40, 150);
         
         doc.setFontSize(14);
-        doc.text("This ID validates that the bearer is a professional member of the Wizarding Community.", 148, 185, {align: 'center'});
+        doc.setTextColor(100, 100, 100);
+        doc.text("By decree of the Minister for Magic, this badge grants full access to Muggle & Magical workplaces.", 148, 185, {align: 'center'});
         
-        doc.save('Ministry_ID_' + name + '.pdf');
+        doc.save('Ministry_Badge_' + name + '.pdf');
     }
 </script>
 </body>
